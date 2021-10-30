@@ -1,0 +1,25 @@
+<form [formGroup]="formControl">
+  <div class="row">
+    <div class="col-lg-4">
+      <input formControlName="manufacturer" class="form-control" type="text" placeholder="Manufacturer Name" aria-label=".form-control-lg example">
+    </div>
+    <div class="col-lg-4">
+      <input formControlName="type" class="form-control" type="text" placeholder="Flooring Type" aria-label=".form-control-lg example">
+    </div>
+    <div class="col-lg-4">
+      <input formControlName="style" class="form-control" type="text" placeholder="Flooring Style" aria-label=".form-control-lg example">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <input formControlName="color" class="form-control" type="text" placeholder="Flooring Color" aria-label=".form-control-lg example">
+    </div>
+    <div class="col-lg-4">
+      <input formControlName="size" class="form-control" type="text" placeholder="Flooring Dimensions" aria-label=".form-control-lg example">
+    </div>
+    <div class="col-lg-4">
+      <button type="button" (click)="search()" class="btn btn-primary">Search</button>
+      <button type="button" (click)="reset()" class="btn btn-primary">Clear</button>
+    </div>
+  </div>
+</form>
