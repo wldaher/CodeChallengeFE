@@ -23,8 +23,7 @@ export class SearchComponent implements OnInit {
   @Output()
   exportHttpParams = new EventEmitter<HttpParams>()
 
-  constructor(private _modalService: NgbModal,
-    private _flooringService: FlooringService) { }
+  constructor(private _modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -37,16 +36,6 @@ export class SearchComponent implements OnInit {
       style: new FormControl(),
       color: new FormControl(),
       size: new FormControl()
-    });
-  }
-
-  initModalForm(flooring?: Flooring): void {
-    this.modalFormControl = new FormBuilder().group({
-      manufacturer: new FormControl(flooring ? flooring.manufacturer : null),
-      type: new FormControl(flooring ? flooring.type : null),
-      style: new FormControl(flooring ? flooring.style : null),
-      color: new FormControl(flooring ? flooring.color : null),
-      size: new FormControl(flooring ? flooring.size : null)
     });
   }
 
@@ -65,19 +54,17 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  save(): void {
-    this._flooringService.save(Object.assign(new Flooring(), this.modalFormControl.value)).subscribe(() => {
-      this.modal.dismiss();
-    });
-  }
-
   reset(): void {
     this.formControl.reset();
     this.exportHttpParams.emit(new HttpParams());
   }
 
-  open(content: any) {
-    this.initModalForm();
+  openModal(content: any): void {
     this.modal = this._modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
+
+  dataSaved(): void {
+    this.modal.dismiss();
+    this.search();
   }
 }

@@ -1,9 +1,10 @@
 export class Flooring {
-  manufacturer!: string;
+  id!: number;
   type!: string;
-  style!: string;
-  styleKey!: string;
+  manufacturer!: string;
   color!: string;
-  colorNumber!: string;
+  style!: string;
   size!: string;
+  colorNumber!: string;
+  styleKey!: string;
 }

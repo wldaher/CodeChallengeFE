@@ -44,7 +44,7 @@
         <div class="col-lg-4 search-control">
           <button type="submit" class="btn btn-primary action-button">Search</button>
           <button type="button" (click)="reset()" class="btn btn-danger action-button">Clear</button>
-          <button type="button" (click)="open(editModal)" class="btn btn-success secondary-button">Add</button>
+          <button type="button" (click)="openModal(editModal)" class="btn btn-success secondary-button">Add</button>
         </div>
       </div>
     </div>
@@ -52,25 +52,6 @@
 
 
 </form>
-<ng-template #editModal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Add New Flooring Record</h4>
-  </div>
-  <div class="modal-body">
-    <form [formGroup]="modalFormControl">
-        <input formControlName="manufacturer" class="form-control modal-input" type="text" placeholder="Manufacturer Name" aria-label="manufacturer name">
-        <select formControlName="type" class="form-control modal-input" aria-label="type select">
-          <option [value]="null" aria-label="None">-- Select a Type --</option>
-          <option *ngFor="let type of flooringTypes" [value]="type.id">
-            {{type.name}}
-          </option>
-        </select>
-        <input formControlName="style" class="form-control modal-input" type="text" placeholder="Flooring Style" aria-label="style name" />
-      <input formControlName="color" class="form-control modal-input" type="text" placeholder="Flooring Color" aria-label="color name" />
-      <input formControlName="size" class="form-control modal-input" type="text" placeholder="Flooring Size" aria-label="size select" />
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" (click)="save()" class="btn btn-primary action-button">Save</button>
-  </div>
+<ng-template #editModal>
+  <edit-flooring (saveEvent)="dataSaved()"></edit-flooring>
 </ng-template>

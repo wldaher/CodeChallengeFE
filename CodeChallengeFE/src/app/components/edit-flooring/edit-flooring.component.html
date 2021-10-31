@@ -1,0 +1,81 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Add New Flooring Record</h4>
+</div>
+<div class="modal-body">
+  <form *ngIf="formControl" [formGroup]="formControl">
+    <div class="row">
+      <div class="col-lg-7">
+        <select *ngIf="showManufacturers" formControlName="manufacturerId" class="form-control modal-input" aria-label="manufacturer select">
+          <option [value]="null" aria-label="None">-- Select a Manufacturer --</option>
+          <option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.id">
+            {{manufacturer.name}}
+          </option>
+        </select>
+        <div *ngIf="!showManufacturers" formGroupName="manufacturer">
+          <input formControlName="name" class="form-control modal-input" type="text" placeholder="Manufacturer Name" aria-label="manufacturer name">
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <a href="#" (click)="toggleManufacturer()">{{this.showManufacturers ? 'Create Manufacturer' : 'Use Existing Manufacturer'}}</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-7">
+        <select *ngIf="showTypes" formControlName="typeId" class="form-control modal-input" aria-label="type select">
+          <option [value]="null" aria-label="None">-- Select a Type --</option>
+          <option *ngFor="let type of flooringTypes" [value]="type.id">
+            {{type.name}}
+          </option>
+        </select>
+        <div *ngIf="!showTypes" formGroupName="type">
+          <input formControlName="name" class="form-control modal-input" type="text" placeholder="Type Name" aria-label="type name">
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <a href="#" (click)="toggleType()">{{this.showTypes ? 'Create Type' : 'Use Existing Type'}}</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-7">
+        <select *ngIf="showStyles" formControlName="styleId" class="form-control modal-input" aria-label="style select">
+          <option [value]="null" aria-label="None">-- Select a Style --</option>
+          <option *ngFor="let style of styles" [value]="style.id">
+            {{style.name}}
+          </option>
+        </select>
+        <div *ngIf="!showStyles" formGroupName="style">
+          <input formControlName="name" class="form-control modal-input" type="text" placeholder="Flooring Style" aria-label="style name" />
+          <input formControlName="styleKey" class="form-control modal-input" type="text" placeholder="Flooring Style Key" aria-label="style key" />
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <a href="#" (click)="toggleStyle()">{{this.showStyles ? 'Create Style' : 'Use Existing Style'}}</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-7">
+        <select *ngIf="showColors" formControlName="colorId" class="form-control modal-input" aria-label="color select">
+          <option [value]="null" aria-label="None">-- Select a Color --</option>
+          <option *ngFor="let color of colors" [value]="color.id">
+            {{color.name}}
+          </option>
+        </select>
+        <div *ngIf="!showColors" formGroupName="color">
+          <input formControlName="name" class="form-control modal-input" type="text" placeholder="Flooring Color" aria-label="color name" />
+          <input formControlName="colorNumber" class="form-control modal-input" type="text" placeholder="Flooring Color Number" aria-label="color number" />
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <a href="#" (click)="toggleColor()">{{this.showColors ? 'Create Color' : 'Use Existing Color'}}</a>
+      </div>
+    </div>
+
+    <input formControlName="size" class="form-control modal-input" type="text" placeholder="Flooring Size" aria-label="size select" />
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" (click)="save()" class="btn btn-primary">Save</button>
+</div>
