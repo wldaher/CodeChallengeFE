@@ -1,4 +1,6 @@
-<search (exportHttpParams)="search($event)"></search>
+<search
+  [flooringTypes]="flooringTypes"
+  (exportHttpParams)="search($event)"></search>
 <div class="row">
   <div class="col-lg-12">
     <table *ngIf="dataSource | async as flooringSource" class="table">

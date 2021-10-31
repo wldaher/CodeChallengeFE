@@ -1,25 +1,76 @@
-<form [formGroup]="formControl">
-  <div class="row">
-    <div class="col-lg-4">
-      <input formControlName="manufacturer" class="form-control" type="text" placeholder="Manufacturer Name" aria-label=".form-control-lg example">
-    </div>
-    <div class="col-lg-4">
-      <input formControlName="type" class="form-control" type="text" placeholder="Flooring Type" aria-label=".form-control-lg example">
-    </div>
-    <div class="col-lg-4">
-      <input formControlName="style" class="form-control" type="text" placeholder="Flooring Style" aria-label=".form-control-lg example">
+<form [formGroup]="formControl" (submit)="search()">
+  <div class-="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-4 search-control">
+          <input formControlName="manufacturer" class="form-control" type="text" placeholder="Manufacturer Name" aria-label="manufacturer name">
+        </div>
+        <div class="col-lg-4 search-control">
+          <select formControlName="type" class="form-control" aria-label="type select">
+            <option [value]="null" aria-label="None">-- Select a Type --</option>
+            <option *ngFor="let type of flooringTypes" [value]="type.id">
+              {{type.name}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 search-control">
+          <input formControlName="style" class="form-control" type="text" placeholder="Flooring Style" aria-label="style name" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 search-control">
+          <input formControlName="color" class="form-control" type="text" placeholder="Flooring Color" aria-label="color name" />
+        </div>
+        <div class="col-lg-4 search-control">
+          <select formControlName="size" class="form-control custom-select" aria-label="size select">
+            <option [value]="null" aria-label="None">-- Select a Size --</option>
+            <option value="4">
+              4'
+            </option>
+            <option value="8">
+              8'
+            </option>
+            <option value="12">
+              12'
+            </option>
+            <option value="18">
+              18'
+            </option>
+            <option value="24">
+              24'
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 search-control">
+          <button type="submit" class="btn btn-primary action-button">Search</button>
+          <button type="button" (click)="reset()" class="btn btn-danger action-button">Clear</button>
+          <button type="button" (click)="open(editModal)" class="btn btn-success secondary-button">Add</button>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-4">
-      <input formControlName="color" class="form-control" type="text" placeholder="Flooring Color" aria-label=".form-control-lg example">
-    </div>
-    <div class="col-lg-4">
-      <input formControlName="size" class="form-control" type="text" placeholder="Flooring Dimensions" aria-label=".form-control-lg example">
-    </div>
-    <div class="col-lg-4">
-      <button type="button" (click)="search()" class="btn btn-primary">Search</button>
-      <button type="button" (click)="reset()" class="btn btn-primary">Clear</button>
-    </div>
-  </div>
+
+
 </form>
+<ng-template #editModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add New Flooring Record</h4>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="modalFormControl">
+        <input formControlName="manufacturer" class="form-control modal-input" type="text" placeholder="Manufacturer Name" aria-label="manufacturer name">
+        <select formControlName="type" class="form-control modal-input" aria-label="type select">
+          <option [value]="null" aria-label="None">-- Select a Type --</option>
+          <option *ngFor="let type of flooringTypes" [value]="type.id">
+            {{type.name}}
+          </option>
+        </select>
+        <input formControlName="style" class="form-control modal-input" type="text" placeholder="Flooring Style" aria-label="style name" />
+      <input formControlName="color" class="form-control modal-input" type="text" placeholder="Flooring Color" aria-label="color name" />
+      <input formControlName="size" class="form-control modal-input" type="text" placeholder="Flooring Size" aria-label="size select" />
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" (click)="save()" class="btn btn-primary action-button">Save</button>
+  </div>
+</ng-template>

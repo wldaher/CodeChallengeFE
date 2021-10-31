@@ -12,4 +12,8 @@ export class FlooringService {
   public get(params?: HttpParams): Observable<Flooring[]> {
     return this._httpClient.get<Flooring[]>('https://localhost:7259/Flooring', { params: params });
   }
+
+  public save(flooring: Flooring): Observable<Flooring> {
+    return this._httpClient.post<Flooring>('https://localhost:7259/Flooring', flooring);
+  }
 }
