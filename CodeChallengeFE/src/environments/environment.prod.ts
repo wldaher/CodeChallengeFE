@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://localhost:7259'
+  baseUrl: 'https://wdaher-code-challenge.azurewebsites.net'
 };

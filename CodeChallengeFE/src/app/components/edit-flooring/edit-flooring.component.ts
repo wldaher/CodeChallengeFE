@@ -38,6 +38,9 @@ export class EditFlooringComponent implements OnInit {
   @Input()
   flooring!: Flooring;
 
+  @Input()
+  header!: string;
+
   @Output()
   saveEvent = new EventEmitter<any>();
 
